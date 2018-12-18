@@ -18,5 +18,8 @@
     "dotenv": "^6.2.0",
     "jest": "^23.6.0",
     "node-fetch": "^2.3.0"
+  },
+  "jest": {
+    "globalSetup": "./helpers/clearDB.js"
   }
 }
