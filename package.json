@@ -20,6 +20,7 @@
     "node-fetch": "^2.3.0"
   },
   "jest": {
-    "globalSetup": "./helpers/clearDB.js"
+    "globalSetup": "./helpers/clearDB.js",
+    "reporters": ["default", "./helpers/reporter.js"]
   }
 }
