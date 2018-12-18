@@ -10,9 +10,9 @@
     "test": "NODE_ENV=test jest"
   },
   "dependencies": {
-    "apollo-server-koa": "^2.3.1",
+    "apollo-server": "^2.3.1",
     "graphql": "^14.0.2",
-    "koa": "^2.6.2"
+    "mongoose": "^5.4.0"
   },
   "devDependencies": {
     "dotenv": "^6.2.0",

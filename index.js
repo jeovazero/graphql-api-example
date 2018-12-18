@@ -1,5 +1,4 @@
-const Koa = require('koa');
-const {ApolloServer, gql} = require('apollo-server-koa');
+const {ApolloServer, gql} = require('apollo-server');
 
 const posts = {
   list: [
@@ -47,11 +46,8 @@ const resolvers = {
 
 const server = new ApolloServer({ typeDefs, resolvers });
 
-const app = new Koa();
-server.applyMiddleware({ app });
-
 const PORT = process.env.PORT || 3001;
 
-app.listen({ port: PORT }, () =>
-    console.log(`Server running on http://localhost:${PORT}${server.graphqlPath}`)
-)
+server.listen(PORT).then(({ url }) => {
+  console.log(`server on ${url}`)
+})
