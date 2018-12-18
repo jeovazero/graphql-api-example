@@ -30,6 +30,8 @@ const server = new ApolloServer({ typeDefs, resolvers });
 const app = new Koa();
 server.applyMiddleware({ app });
 
-app.listen({ port: 5550 }, () => 
-    console.log(`Server running on http://localhost:5550${server.graphqlPath}`)
+const PORT = process.env.PORT || 3001;
+
+app.listen({ port: PORT }, () =>
+    console.log(`Server running on http://localhost:${PORT}${server.graphqlPath}`)
 )
