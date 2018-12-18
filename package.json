@@ -1,0 +1,16 @@
+{
+  "name": "api-graphql-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "jeovazero",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-koa": "^2.3.1",
+    "graphql": "^14.0.2",
+    "koa": "^2.6.2"
+  },
+  "devDependencies": {
+    "dotenv": "^6.2.0",
+    "jest": "^23.6.0"
+  }
+}
