@@ -1,13 +1,9 @@
 const {ApolloServer, gql} = require('apollo-server');
+const mongoose = require('mongoose');
+const Post = require('./models/post');
 
-const posts = {
-  list: [
-    { id: 0, author: 'chaos knight', text: 'I will destroy you!' },
-    { id: 1, author: 'juggernaut', text: 'My power. My mask.' },
-    { id: 2, author: 'ember spirit', text: 'Wars flames blaze again' }
-  ],
-  next_id: 3
-}
+const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost/posts-app";
+mongoose.connect(MONGO_URL, { useNewUrlParser: true });
 
 const typeDefs = gql`
   type Query{
@@ -27,19 +23,17 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    getPosts: () => posts.list,
+    getPosts: async () => {
+      const list = await Post.find();
+      return list;
+    }
   },
   Mutation: {
-    addPost: (_, {author, text}) => {
-      posts.list = [
-        ...posts.list, {
-          id: posts.next_id,
-          author,
-          text
-        }
-      ];
-      posts.next_id += 1;
-      return posts.list;
+    addPost: async (_, {author, text}) => {
+      const post = new Post({author, text});
+      await post.save();
+      const list = await Post.find();
+      return list;
     }
   }
 }
